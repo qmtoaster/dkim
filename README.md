@@ -41,5 +41,3 @@ DKIM on QmailToaster
 18) Just send test mail on any yahoo email id and check headers. If show error in headers then just wait to reflect DNS.
 
 In order to test your settings, simply send an email to: check-auth@verifier.port25.com and/or check-auth2@verifier.port25.com with the suject of "test" (without the quotes) and "Just testing" in the body (also without quotes). It is best but not required to have a subject and body because this service will also show you how spamassassin rated your email.
-
-You can also use http://www.sendmail.org/dkim/tools to check and confirm you DKIM configuration 
