@@ -1,9 +1,3 @@
-# DKIM
-
-From: http://wiki.qmailtoaster.com/index.php/How_to_Setup_DKIM_with_Qmail_Toaster
-
-DKIM on QmailToaster
-
 Global key (default for all domains)
 # yum install perl-XML-Simple perl-Mail-DKIM perl-XML-Parser
 # wget https://raw.githubusercontent.com/qmtoaster/dkim/master/qmail-remote
@@ -28,7 +22,7 @@ CentOS 8
    dkim1._domainkey      IN      TXT     "k=rsa; p=******************************"
 Create DNS TXT record for your domain using the output from public.txt above
    Host                                Text
-   dkim1._domainkey       	v=DKIM1; k=rsa; p=************************* 
+   dkim1._domainkey             v=DKIM1; k=rsa; p=*************************
 Your DKIM setup is done.
 To test send mail to any yahoo email id and check headers. If errors show in headers then wait for changes to reflect in DNS.
 DKIM key (other than default)
@@ -44,7 +38,7 @@ CentOS 8
    dkim1._domainkey       IN      TXT     "k=rsa; p=******************************"
 Create DNS TXT record for otherdomain.com using the output from the text file 'otherdomain.com.txt'
    Host                                Text
-   dkim1._domainkey       	v=DKIM1; k=rsa; p=*************************
+   dkim1._domainkey             v=DKIM1; k=rsa; p=*************************
 # vi /var/qmail/control/dkim/signconf.xml (Add)
   <otherdomain.com domain="otherdomain.com" keyfile="/var/qmail/control/dkim/otherdomain.com.key" selector="dkim1">
     <types id="dkim" />
@@ -99,7 +93,7 @@ Increase softlimit to 128000000 in /var/qmail/supervise/smtp/run
 # qmailctl start
 Send email to user on the host
 Check email header dkim verification
-   Notes: 
+   Notes:
           1) In order to test your settings, simply send an email to: check-auth@verifier.port25.com and/or check-auth2@verifier.port25.com
              with the suject of "test" (without the quotes) and "Just testing" in the body (also without quotes). It is best but not required
              to have a subject and body because this service will also show you how spamassassin rated your email. If you have a GMAIL or Yahoo
@@ -119,7 +113,7 @@ Check email header dkim verification
              # dknewkey domain.tld.key 1024 > domain.tld.txt
           4) Testing DKIM signatures sending from Roundcube webmail I found that plain text formatted email caused DKIM failure sending
              to port25.com and GMAIL recipients, but when sending the same email in Roundcube's html format the DKIM signature was verified
-             and passed. The same email DKIM signature passed with Squirrelmail, Thunderbird, and OpenDKIM's 'opendkim-testkey' program. It 
-             seems that certain email clients will add or subtract characters in the email header causing DKIM to fail. This may be happening 
+             and passed. The same email DKIM signature passed with Squirrelmail, Thunderbird, and OpenDKIM's 'opendkim-testkey' program. It
+             seems that certain email clients will add or subtract characters in the email header causing DKIM to fail. This may be happening
              in Roundcube while other clients do not affect the email header adversely. I have a help request in the Roundcube user's list
              for this issue. Hopefully, this issue is  merely a configuration setting, if not, that it is resolved soon.
