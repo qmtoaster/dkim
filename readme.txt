@@ -31,7 +31,7 @@ Centos 7
 # perl -pi -e 's/^.*\.key/dkim1/' /var/qmail/control/dkim/otherdomain.com.txt
 CentOS 8
 # cd /var/qmail/control/dkim
-# openssl genrsa -out ./otherdomain.key 2048 && openssl rsa -in ./otherdomain.key -pubout -out ./temp.txt
+# openssl  genrsa -out ./otherdomain.key 2048 && openssl rsa -in ./otherdomain.key -pubout -out ./temp.txt
 # cat ./temp.txt | grep -v - | tr -d '\n' | sed '1s/^/dkim1 IN TXT "k=rsa; p=/' &> ./otherdomain.txt && echo "\"" >> ./otherdomain.txt && rm ./temp.txt
 
 # cat /var/qmail/control/dkim/otherdomain.com.txt
